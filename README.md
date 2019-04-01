@@ -1,6 +1,6 @@
 # test-Contentful
 
-> My super-duper Nuxt.js project
+> My splendiferous Nuxt.js project
 
 ## Build Setup
 
