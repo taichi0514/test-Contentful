@@ -4,7 +4,7 @@
     <h1>{{ person.fields.name }}</h1>
     <!-- render blog posts -->
     <ul>
-      <li v-for="post in posts" :key="index">{{ post.fields.title }}</li>
+      <li v-for="(post,index) in posts" :key="index">{{ post.fields.title }}</li>
     </ul>
   </div>
 </template>
