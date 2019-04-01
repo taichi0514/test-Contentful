@@ -6,6 +6,14 @@
     <ul>
       <li v-for="(post,index) in posts" :key="index">{{ post.fields.title }}</li>
     </ul>
+    <ul>
+      <li v-for="(post,index) in posts" :key="index">
+        <img :src="post.fields.heroImage.fields.file.url + '?fit=scale&w=350&h=196'" alt>
+      </li>
+    </ul>
+    <img :src="person.fields.image.fields.file.url + '?w=1200'" alt>
+
+    <p>{{assets}}</p>
   </div>
 </template>
 
@@ -37,6 +45,17 @@ export default {
         }
       })
       .catch(console.error)
+    client
+      .getAssets()
+      .then(assets => {
+        return assets.items.map(function(asset) {
+          var imageURL = 'https:' + asset.fields.file.url
+        })
+        console.log(asset.fields.file.url)
+      })
+      .catch(function(e) {
+        console.log(e)
+      })
   }
 }
 </script>
