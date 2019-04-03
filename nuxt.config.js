@@ -65,5 +65,17 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
-  }
+  },
+
+  generate: {
+    routes() {
+      return cdaClient.getEntries({
+        'content_type': ctfConfig.CTF_BLOG_POST_TYPE_ID
+      }).then(entries => {
+        return [
+          ...entries.items.map(entry => `/blog/${entry.fields.slug}`)
+        ]
+      })
+    }
+  },
 }
