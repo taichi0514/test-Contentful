@@ -2,18 +2,17 @@
   <div>
     <!-- render data of the person -->
     <h1>{{ person.fields.name }}</h1>
+    <img :src="person.fields.image.fields.file.url + '?w=1200'" alt>
     <!-- render blog posts -->
     <ul>
-      <li v-for="(post,index) in posts" :key="index">{{ post.fields.title }}</li>
-    </ul>
-    <ul>
       <li v-for="(post,index) in posts" :key="index">
-        <img :src="post.fields.heroImage.fields.file.url + '?fit=scale&w=350&h=196'" alt>
+        <nuxt-link :to="'blogpost/' + post.fields.slug" class="title">
+          <img :src="post.fields.heroImage.fields.file.url + '?fit=scale&w=350&h=196'" alt>
+          <p>{{ post.fields.slug}}</p>
+          {{post.fields.path}}
+        </nuxt-link>
       </li>
     </ul>
-    <img :src="person.fields.image.fields.file.url + '?w=1200'" alt>
-
-    <p>{{assets}}</p>
   </div>
 </template>
 
@@ -39,23 +38,14 @@ export default {
       .then(([entries, posts]) => {
         // return data that should be available
         // in the template
+        console.log(posts.items)
         return {
           person: entries.items[0],
-          posts: posts.items
+          posts: posts.items,
+          content_type: entries
         }
       })
       .catch(console.error)
-    client
-      .getAssets()
-      .then(assets => {
-        return assets.items.map(function(asset) {
-          var imageURL = 'https:' + asset.fields.file.url
-        })
-        console.log(asset.fields.file.url)
-      })
-      .catch(function(e) {
-        console.log(e)
-      })
   }
 }
 </script>
