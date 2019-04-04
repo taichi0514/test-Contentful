@@ -6,7 +6,7 @@
     <!-- render blog posts -->
     <ul>
       <li v-for="(post,index) in posts" :key="index">
-        <nuxt-link :to="'blogpost/' + post.fields.slug" class="title">
+        <nuxt-link :to="'blog/' + post.fields.slug" class="title">
           <img :src="post.fields.heroImage.fields.file.url + '?fit=scale&w=350&h=196'" alt>
           <p>{{ post.fields.slug}}</p>
           {{post.fields.path}}
